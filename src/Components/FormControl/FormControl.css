@@ -1,0 +1,56 @@
+/* FormControl Container */
+.FormControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Label styling */
+.FormControl label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Red asterisk for required fields */
+.FormControl .required {
+  color: #e74c3c;
+  margin-left: 0.3rem;
+}
+
+/* Input field styling */
+.FormControl__input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input focus state - what happens when user clicks in the input */
+.FormControl__input:focus {
+  outline: none;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+/* Placeholder text styling */
+.FormControl__input::placeholder {
+  color: #999;
+}
+
+/* Mobile responsive - make inputs bigger on small screens */
+@media screen and (max-width: 425px) {
+  .FormControl {
+    margin-bottom: 1.2rem;
+  }
+
+  .FormControl__input {
+    padding: 0.9rem 1rem;
+    font-size: 1.1rem;
+  }
+}
