@@ -1,0 +1,36 @@
+/* Basebutton Component Styles */
+
+.Basebutton {
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: calc(var(--cardPadding) / 3.35) calc(var(--cardPadding) / 2);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  font-weight: 500;
+}
+
+/* Hover effect - slight opacity change for feedback */
+.Basebutton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Active/pressed effect */
+.Basebutton:active {
+  transform: translateY(0px);
+}
+
+/* Disabled state */
+.Basebutton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 425px) {
+  .Basebutton {
+    width: -webkit-fill-available;
+    padding: calc(var(--cardPadding) / 3) calc(var(--cardPadding) / 1.5);
+  }
+}
