@@ -1,0 +1,113 @@
+/* ── Container ────────────────────────────────────── */
+.product-info {
+  display: flex;
+  gap: 48px;
+  padding: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Image ────────────────────────────────────────── */
+.product-info__image-wrapper {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f9fafb;
+  aspect-ratio: 1 / 1;
+}
+
+.product-info__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Details ──────────────────────────────────────── */
+.product-info__details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-info__category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6366f1;
+}
+
+.product-info__name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.product-info__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin: 0;
+}
+
+.product-info__description {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Quantity ─────────────────────────────────────── */
+.product-info__quantity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: fit-content;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.product-info__qty-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.product-info__qty-btn:hover {
+  background: #f3f4f6;
+}
+
+.product-info__qty-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* ── Mobile ───────────────────────────────────────── */
+@media screen and (max-width: 768px) {
+  .product-info {
+    flex-direction: column;
+    padding: 20px;
+    gap: 24px;
+  }
+
+  .product-info__name {
+    font-size: 1.4rem;
+  }
+
+  .product-info__price {
+    font-size: 1.2rem;
+  }
+}
