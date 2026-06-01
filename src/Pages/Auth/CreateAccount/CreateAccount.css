@@ -1,0 +1,135 @@
+/* Create Account Page Styling */
+
+.CreateAccountPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/* Container */
+.CreateAccountPage__container {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 3rem 2.5rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Header Section */
+.CreateAccountPage__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.CreateAccountPage__header h1 {
+  font-size: 2rem;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.CreateAccountPage__header p {
+  color: #999;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Form Section */
+.CreateAccountPage__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Error Messages */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: -1.2rem;
+  display: block;
+}
+
+/* Terms Checkbox */
+.CreateAccountPage__termsCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.CreateAccountPage__termsCheckbox input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: #6c5ce7;
+}
+
+.CreateAccountPage__termsCheckbox label {
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.CreateAccountPage__termsLink {
+  color: #6c5ce7;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.CreateAccountPage__termsLink:hover {
+  text-decoration: underline;
+  color: #764ba2;
+}
+
+/* Footer Section */
+.CreateAccountPage__footer {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.CreateAccountPage__footer p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.CreateAccountPage__link {
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.CreateAccountPage__link:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 425px) {
+  .CreateAccountPage__container {
+    padding: 2rem 1.5rem;
+  }
+
+  .CreateAccountPage__header h1 {
+    font-size: 1.6rem;
+  }
+
+  .CreateAccountPage__form {
+    gap: 1.2rem;
+  }
+
+  .CreateAccountPage__termsCheckbox {
+    flex-direction: column;
+  }
+
+  .CreateAccountPage__termsCheckbox input[type='checkbox'] {
+    margin-top: 0;
+  }
+}

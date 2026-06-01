@@ -1,5 +1,6 @@
 
 import './button.css';
+import type { MouseEvent } from 'react';
 
 /**
  * Basebutton Component
@@ -13,7 +14,7 @@ interface BaseButtonProps {
   width?: string;               // Width of button
   color?: string;               // Text color of button
   border?: string;              // Border style
-  onClick?: () => void;         // Function called when button is clicked
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;  // Function called when button is clicked
   children?: React.ReactNode;   // Text or elements inside button
   type?: 'button' | 'submit' | 'reset';  // Button type for forms
   disabled?: boolean;           // Whether button is disabled
@@ -46,7 +47,7 @@ export const Basebutton = ({
     <button
       className="Basebutton"
       style={dynamicStyles}
-      onClick={onClick}
+      onClick={(e) => onClick?.(e)}
       type={type}
       disabled={disabled}
     >
