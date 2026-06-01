@@ -1,0 +1,22 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.product-grid__empty {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: #374151;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 640px) {
+  .product-grid {
+    gap: 1rem;
+  }
+}
