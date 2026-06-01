@@ -1,22 +1,34 @@
-import { useState } from 'react';
 import './ProductInfo.css';
+import { ProductImageGallery } from '../ProductImageGallery/ProductImageGallery';
+import { ProductReviews } from '../ProductReviews/ProductReview';
+import { ProductGrid } from '../ProductGrid/ProductGrid';
 import { Basebutton } from '../button/button';
+import type { Product } from '../ProductCard/ProductCardComponent';
+import { useState } from 'react';
 
-interface Product {
+interface Review {
   id: number;
   name: string;
-  price: number;
-  image: string;
-  category: string;
-  description: string;
+  verified: boolean;
+  rating: number;
+  comment: string;
 }
 
 interface ProductInfoProps {
   product: Product;
+  images: string[];
+  reviews: Review[];
+  relatedProducts: Product[];
   onAddToCart: (product: Product, quantity: number) => void;
 }
 
-export const ProductInfo = ({ product, onAddToCart }: ProductInfoProps) => {
+export const ProductInfo = ({
+  product,
+  images,
+  reviews,
+  relatedProducts,
+  onAddToCart,
+}: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
 
   const increment = () => setQuantity(q => q + 1);
@@ -25,34 +37,93 @@ export const ProductInfo = ({ product, onAddToCart }: ProductInfoProps) => {
   return (
     <div className="product-info">
 
-      {/* Image */}
-      <div className="product-info__image-wrapper">
-        <img src={product.image} alt={product.name} className="product-info__image" />
-      </div>
+      {/* ── Top Section ── */}
+      <div className="product-info__top">
 
-      {/* Details */}
-      <div className="product-info__details">
-        <span className="product-info__category">{product.category}</span>
-        <h1 className="product-info__name">{product.name}</h1>
-        <p className="product-info__price">${product.price.toFixed(2)}</p>
-        <p className="product-info__description">{product.description}</p>
-
-        {/* Quantity Selector */}
-        <div className="product-info__quantity">
-          <button className="product-info__qty-btn" onClick={decrement}>-</button>
-          <span className="product-info__qty-value">{quantity}</span>
-          <button className="product-info__qty-btn" onClick={increment}>+</button>
+        {/* Left — Image Gallery */}
+        <div className="product-info__gallery">
+          <ProductImageGallery images={images} productName={product.name} />
         </div>
 
-        {/* Add to Cart */}
-        <Basebutton
-          backgroundColor="#6366f1"
-          color="#ffffff"
-          width="100%"
-          onClick={() => onAddToCart(product, quantity)}
-        >
-          Add to Cart
-        </Basebutton>
+        {/* Right — Product Details */}
+        <div className="product-info__details">
+
+          {/* Badge + Rating */}
+          <div className="product-info__badges">
+            <span className="product-info__badge">New Release</span>
+            <div className="product-info__rating">
+              ★★★★★
+              <span className="product-info__rating-count">(178 Reviews)</span>
+            </div>
+          </div>
+
+          {/* Name */}
+          <h1 className="product-info__name">{product.name}</h1>
+
+          {/* Price */}
+          <p className="product-info__price">${product.price.toFixed(2)}</p>
+
+          {/* Description */}
+          <p className="product-info__description">{product.description}</p>
+
+          {/* Stock Status */}
+          <div className="product-info__stock">
+            <span className="product-info__stock-label">Stock Status</span>
+            <span className="product-info__stock-value product-info__stock-value--in">
+              ✓ In Stock (Ships in 3-5 days)
+            </span>
+          </div>
+
+          {/* Quantity + Add to Cart */}
+          <div className="product-info__actions">
+            <div className="product-info__quantity">
+              <button className="product-info__qty-btn" onClick={decrement}>-</button>
+              <span className="product-info__qty-value">{quantity}</span>
+              <button className="product-info__qty-btn" onClick={increment}>+</button>
+            </div>
+
+            <Basebutton
+              backgroundColor="#6366f1"
+              color="#ffffff"
+              width="auto"
+              onClick={() => onAddToCart(product, quantity)}
+            >
+              Add to Cart
+            </Basebutton>
+          </div>
+
+          {/* Delivery Info */}
+          <div className="product-info__delivery">
+            <div className="product-info__delivery-item">
+              <span>🚚</span>
+              <div>
+                <p className="product-info__delivery-title">Delivery</p>
+                <p className="product-info__delivery-sub">2-5 days</p>
+              </div>
+            </div>
+            <div className="product-info__delivery-item">
+              <span>🔄</span>
+              <div>
+                <p className="product-info__delivery-title">Warranty</p>
+                <p className="product-info__delivery-sub">1 Year (Intl)</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Reviews ── */}
+      <ProductReviews reviews={reviews} />
+
+      {/* ── You May Also Like ── */}
+      <div className="product-info__related">
+        <h2 className="product-info__related-title">You May Also Like</h2>
+        <ProductGrid
+          products={relatedProducts}
+          onAddToCart={() => {}}
+          onViewDetails={() => {}}
+        />
       </div>
 
     </div>
