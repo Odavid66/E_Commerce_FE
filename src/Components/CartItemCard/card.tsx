@@ -24,19 +24,19 @@ interface CartItemCardProps {
  * @returns A product card with quantity controls
  */
 export const CartItemCard = ({
-  productImage,
-  productName,
-  productDescription,
-  price,
-  quantity,
-  onIncrement,
-  onDecrement,
-  onRemove
+    productImage,
+    productName,
+    productDescription,
+    price,
+    quantity,
+    onIncrement,
+    onDecrement,
+    onRemove
 }: CartItemCardProps) => {
   // Format price to always show 2 decimal places (e.g., 99.99)
-  const formattedPrice = price.toFixed(2);
+    const formattedPrice = price.toFixed(2);
 
-  return (
+    return (
     <div className="CartItemCard">
       {/* Product Image */}
       <img src={productImage} alt={productName} />
