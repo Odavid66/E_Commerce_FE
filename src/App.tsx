@@ -7,8 +7,11 @@ import { Layout } from './Components/Layout/Layout'
 import { ProductInfoPage } from './Pages/Customer/Product/ProductInfoPage'
 import { HomePage } from './Pages/Customer/HomePage/HomePage'
 import { Cart } from './Pages/Customer/Cart/Cart'
-import { Basebutton } from './Components/Button/button'
+import { Basebutton } from './Components/button/button'
 import { Customers } from './Pages/Admin/Customers/Customers'
+import { ProductInventory } from './Pages/Admin/Product/ProductInventory/ProductInventory'
+import { CreateProduct } from './Pages/Admin/Product/CreateProduct/CreateProduct'
+import { EditProduct } from './Pages/Admin/Product/EditProduct/EditProduct'
 
 const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -28,6 +31,11 @@ function App() {
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/button" element={<Basebutton onClick={() => alert('Button clicked!')}>Click Me</Basebutton>} />
         <Route path="/admin/customers" element={<Customers />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin/products" element={<ProductInventory />} />
+        <Route path="/admin/products/create" element={<CreateProduct />} />
+        <Route path="/admin/products/edit/:id" element={<EditProduct />} />
       </Routes>
     </Router>
   )
