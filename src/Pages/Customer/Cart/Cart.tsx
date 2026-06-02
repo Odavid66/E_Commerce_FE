@@ -42,6 +42,25 @@ export function Cart() {
     return Number.isFinite(value) ? value.toFixed(2) : '0.00'
   }
 
+  const handleClearCart = async () => {
+    try {
+      setError(null)
+
+      // Replace the endpoint with your real cart clear API route.
+      const response = await fetch('/api/cart/clear', {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to clear cart')
+      }
+
+      setCartItems([])
+    } catch {
+      setError('We could not clear your cart right now.')
+    }
+  }
+
   const handleProceedToCheckout = () => {
     // Replace with real checkout API response later.
     const isSuccess = cartItems.length > 0
@@ -112,6 +131,11 @@ export function Cart() {
               <Basebutton backgroundColor="#6b46ff" color="#fff" width="100%" onClick={handleProceedToCheckout}>
                 Proceed to Checkout
               </Basebutton>
+
+              <button type="button" className="cart-summary__clear-button" onClick={handleClearCart}>
+                Clear Cart
+              </button>
+
               <p className="cart-summary__small">By clicking checkout, you agree to our Terms of Service and Privacy Policy.</p>
             </div>
           </div>
