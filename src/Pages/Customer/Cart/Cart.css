@@ -9,8 +9,8 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0 auto 1.5rem;
-  max-width: 1100px;
+  margin: 0 2rem 1.5rem;
+  max-width: 800px;
 }
 
 .cart-page__eyebrow {

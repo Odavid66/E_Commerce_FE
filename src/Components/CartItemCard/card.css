@@ -4,7 +4,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
   background-color: #ffffff;
   gap: 15px;
   border-radius: 12px;
@@ -64,6 +64,16 @@
   opacity: 0.85;
 }
 
+.CartItemCard__removeIcon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.CartItemCard__removeBtn:hover .CartItemCard__removeIcon svg {
+  stroke: #c81e1e;
+}
+
 /* Quantity Control Container */
 .CartItemCard__quantityControl {
   display: flex;
@@ -72,6 +82,15 @@
   background: #f1f6ff;
   border-radius: 999px;
   padding: 6px 8px;
+}
+
+/* Right-side control column (remove button + quantity) */
+.CartItemCard > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Quantity Buttons (-, +) */
@@ -117,6 +136,16 @@
 
   .CartItemCard > div:nth-child(2) {
     width: 100%;
+  }
+
+  /* On mobile, make the controls row span full width and align to edges */
+  .CartItemCard > div:last-child {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
   }
 }
 

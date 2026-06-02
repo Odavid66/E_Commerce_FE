@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { CartItemCard } from '../../../Components/CartItemCard/card'
 import { Basebutton } from '../../../Components/button/button'
 import { GetUserCart, type CartItem } from '../../../utils/GetUserCart'
 import './Cart.css'
 
 export function Cart() {
+  const navigate = useNavigate()
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -38,6 +40,18 @@ export function Cart() {
 
   const formatCurrency = (value: number) => {
     return Number.isFinite(value) ? value.toFixed(2) : '0.00'
+  }
+
+  const handleProceedToCheckout = () => {
+    // Replace with real checkout API response later.
+    const isSuccess = cartItems.length > 0
+
+    if (isSuccess) {
+      navigate('/order')
+      return
+    }
+
+    setError('Checkout failed. Please try again.')
   }
 
   return (
@@ -76,7 +90,7 @@ export function Cart() {
 
           <div className="cart-summary">
             <div className="cart-summary__card">
-              <h2>Order Summary</h2>
+              <h2>Cart Summary</h2>
               <div className="cart-summary__row">
                 <span>Subtotal</span>
                 <span>${formatCurrency(subtotal)}</span>
@@ -95,7 +109,7 @@ export function Cart() {
                 <span>${formatCurrency(total)}</span>
               </div>
 
-              <Basebutton backgroundColor="#6b46ff" color="#fff" width="100%" onClick={() => alert('Proceed to checkout')}>
+              <Basebutton backgroundColor="#6b46ff" color="#fff" width="100%" onClick={handleProceedToCheckout}>
                 Proceed to Checkout
               </Basebutton>
               <p className="cart-summary__small">By clicking checkout, you agree to our Terms of Service and Privacy Policy.</p>
