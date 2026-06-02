@@ -124,18 +124,20 @@ export const CreateAccount = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFullName(e.target.value)}
             name="fullName"
             required={true}
+            layout="inline"
           />
           {errors.fullName && <span className="error-message">{errors.fullName}</span>}
 
           {/* Email Input */}
           <FormControl
-            label="Email"
+            label="Email address"
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             name="email"
             required={true}
+            layout="inline"
           />
           {errors.email && <span className="error-message">{errors.email}</span>}
 
@@ -148,6 +150,7 @@ export const CreateAccount = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             name="password"
             required={true}
+            layout="inline"
           />
           {errors.password && <span className="error-message">{errors.password}</span>}
 
@@ -160,6 +163,7 @@ export const CreateAccount = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
             name="confirmPassword"
             required={true}
+            layout="inline"
           />
           {errors.confirmPassword && (
             <span className="error-message">{errors.confirmPassword}</span>
@@ -175,9 +179,9 @@ export const CreateAccount = () => {
             />
             <label htmlFor="agreeTerms">
               I agree to the{' '}
-              <a href="#" className="CreateAccountPage__termsLink">
+              <Link to="#" className="CreateAccountPage__termsLink">
                 Terms and Conditions
-              </a>
+              </Link>
             </label>
           </div>
           {errors.agreeToTerms && (
@@ -189,7 +193,7 @@ export const CreateAccount = () => {
             backgroundColor="#6c5ce7"
             color="white"
             type="submit"
-            onClick={() => {}} // Form submission handled by onSubmit
+            onClick={() => {}}
           >
             Create Account
           </Basebutton>

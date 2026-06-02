@@ -72,13 +72,14 @@ export const Login = () => {
         <form onSubmit={handleLogin} className="LoginPage__form">
           {/* Email Input */}
           <FormControl
-            label="Email"
+            label="Email address"
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             name="email"
             required={true}
+            layout="inline"
           />
           {errors.email && <span className="error-message">{errors.email}</span>}
 
@@ -91,20 +92,21 @@ export const Login = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             name="password"
             required={true}
+            layout="inline"
           />
           {errors.password && <span className="error-message">{errors.password}</span>}
 
           {/* Forgot Password Link */}
-          <a href="#" className="LoginPage__forgotPassword">
+          <Link to="#" className="LoginPage__forgotPassword">
             Forgot Password?
-          </a>
+          </Link>
 
           {/* Login Button */}
           <Basebutton
             backgroundColor="#6c5ce7"
             color="white"
             type="submit"
-            onClick={() => {}} // Form submission handled by onSubmit
+            onClick={() => {}}
           >
             Login
           </Basebutton>

@@ -1,4 +1,4 @@
-/* FormControl Container */
+/* FormControl Container - Vertical Layout (Default) */
 .FormControl {
   display: flex;
   flex-direction: column;
@@ -6,7 +6,16 @@
   width: 100%;
 }
 
-/* Label styling */
+/* FormControl Container - Inline Layout */
+.FormControl--inline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+/* Label styling - Vertical Layout */
 .FormControl label {
   font-size: 0.95rem;
   font-weight: 500;
@@ -15,27 +24,59 @@
   display: block;
 }
 
+/* Label styling - Inline Layout */
+.FormControl--inline .FormControl__label {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 500;
+  min-width: 110px;
+  text-align: right;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+
 /* Red asterisk for required fields */
-.FormControl .required {
+.FormControl .required,
+.FormControl__required {
   color: #e74c3c;
   margin-left: 0.3rem;
 }
 
-/* Input field styling */
-.FormControl__input {
+/* Input field styling - Vertical Layout */
+.FormControl > .FormControl__input {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 0.5rem;
-  font-family: inherit;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Input focus state - what happens when user clicks in the input */
-.FormControl__input:focus {
+/* Input field styling - Inline Layout */
+.FormControl--inline .FormControl__input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+}
+
+/* Input base styling (shared) */
+.FormControl__input {
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.2s ease;
+}
+
+/* Input focus state - Vertical Layout */
+.FormControl > .FormControl__input:focus {
   outline: none;
   border-color: #6c5ce7;
   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+/* Input focus state - Inline Layout */
+.FormControl--inline .FormControl__input:focus {
+  outline: none;
+  background-color: #efefef;
 }
 
 /* Placeholder text styling */
@@ -52,5 +93,23 @@
   .FormControl__input {
     padding: 0.9rem 1rem;
     font-size: 1.1rem;
+  }
+
+  /* Switch inline layout to vertical on mobile */
+  .FormControl--inline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .FormControl--inline .FormControl__label {
+    min-width: auto;
+    text-align: left;
+  }
+
+  .FormControl--inline .FormControl__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
   }
 }
