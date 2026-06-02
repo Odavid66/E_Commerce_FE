@@ -7,7 +7,7 @@ import { Layout } from './Components/Layout/Layout'
 import { ProductInfoPage } from './Pages/Customer/Product/ProductInfoPage'
 import { HomePage } from './Pages/Customer/HomePage/HomePage'
 import { Cart } from './Pages/Customer/Cart/Cart'
-import { Basebutton } from './Components/button/button'
+import { Basebutton } from './Components/Button/button'
 
 const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
 
