@@ -1,0 +1,120 @@
+/* Login Page Styling */
+
+.LoginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/* Login Container */
+.LoginPage__container {
+  background: white;
+  border-radius: 1.2rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem 2rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+/* Header Section */
+.LoginPage__header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.LoginPage__header h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0 0 0.4rem 0;
+  font-weight: 600;
+}
+
+.LoginPage__header p {
+  color: #999;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Form Section */
+.LoginPage__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Error Messages */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: -0.8rem;
+  display: block;
+  font-weight: 500;
+  margin-left: 110px;
+  padding-left: 1rem;
+}
+
+/* Forgot Password Link */
+.LoginPage__forgotPassword {
+  align-self: flex-end;
+  color: #6c5ce7;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.LoginPage__forgotPassword:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Footer Section */
+.LoginPage__footer {
+  text-align: center;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 1.2rem;
+}
+
+.LoginPage__footer p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.LoginPage__link {
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.LoginPage__link:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 425px) {
+  .LoginPage__container {
+    padding: 1.8rem 1.2rem;
+    max-width: 100%;
+  }
+
+  .LoginPage__header h1 {
+    font-size: 1.5rem;
+  }
+
+  .LoginPage__form {
+    gap: 1rem;
+  }
+
+  .error-message {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}

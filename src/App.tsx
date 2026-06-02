@@ -1,5 +1,7 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Login } from './Pages/Auth/Login/Login'
+import { CreateAccount } from './Pages/Auth/CreateAccount/CreateAccount'
 import { Layout } from './Components/Layout/Layout'
 // import { ProductsPage } from './Pages/Customer/Product/ProductPage'
 import { ProductInfoPage } from './Pages/Customer/Product/ProductInfoPage'
@@ -19,6 +21,9 @@ function App() {
         </Routes>
       </Layout>
       <Routes>
+        {/* Auth Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/" element={<Cart />} />
         <Route path="/button" element={<Basebutton onClick={() => alert('Button clicked!')}>Click Me</Basebutton>} />
       </Routes>
