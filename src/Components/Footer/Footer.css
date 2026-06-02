@@ -1,0 +1,110 @@
+/* ── Footer ───────────────────────────────────────── */
+.footer {
+  background: #111827;
+  color: #d1d5db;
+  padding: 48px 40px 24px;
+  margin-top: auto;
+}
+
+/* ── Top ──────────────────────────────────────────── */
+.footer__top {
+  display: flex;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* ── Brand ────────────────────────────────────────── */
+.footer__brand {
+  flex: 2;
+}
+
+.footer__logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+
+.footer__tagline {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #9ca3af;
+  max-width: 260px;
+}
+
+/* ── Columns ──────────────────────────────────────── */
+.footer__column {
+  flex: 1;
+}
+
+.footer__heading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 16px;
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__list li {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.footer__list li:hover {
+  color: #ffffff;
+}
+
+/* ── Bottom ───────────────────────────────────────── */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.footer__bottom-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__bottom-links span {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.footer__bottom-links span:hover {
+  color: #ffffff;
+}
+
+/* ── Mobile ───────────────────────────────────────── */
+@media screen and (max-width: 768px) {
+  .footer__top {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer {
+    padding: 40px 16px 24px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
