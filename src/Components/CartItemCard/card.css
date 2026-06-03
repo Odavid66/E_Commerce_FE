@@ -1,9 +1,171 @@
-.CartItemCard{
-    display: flex;
+/* CartItemCard Main Container */
+.CartItemCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #ffffff;
+  gap: 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(15, 30, 55, 0.06);
+  border: 1px solid rgba(15, 30, 55, 0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.CartItemCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 30, 55, 0.08);
+}
+
+/* Product Image */
+.CartItemCard img {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Product Info Section */
+.CartItemCard > div:nth-child(2) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.CartItemCard h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #0b213f;
+  font-weight: 600;
+}
+
+.CartItemCard p {
+  margin: 0;
+  color: #6b7b8a;
+  font-size: 0.92rem;
+}
+
+/* Remove Button */
+.CartItemCard__removeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CartItemCard__removeBtn:hover {
+  opacity: 0.85;
+}
+
+.CartItemCard__removeIcon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.CartItemCard__removeBtn:hover .CartItemCard__removeIcon svg {
+  stroke: #c81e1e;
+}
+
+/* Quantity Control Container */
+.CartItemCard__quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f6ff;
+  border-radius: 999px;
+  padding: 6px 8px;
+}
+
+/* Right-side control column (remove button + quantity) */
+.CartItemCard > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Quantity Buttons (-, +) */
+.CartItemCard__quantityBtn {
+  background: transparent;
+  border: none;
+  width: 34px;
+  height: 34px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #12314a;
+}
+
+.CartItemCard__quantityBtn:hover {
+  background-color: rgba(17, 34, 68, 0.04);
+}
+
+.CartItemCard__quantityBtn:active {
+  background-color: rgba(17, 34, 68, 0.06);
+}
+
+/* Quantity Display */
+.CartItemCard__quantity {
+  min-width: 34px;
+  text-align: center;
+  font-weight: 600;
+  color: #0b213f;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 600px) {
+  .CartItemCard {
+    flex-direction: column;
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  .CartItemCard img {
+    width: 100%;
+    height: auto;
+  }
+
+  .CartItemCard > div:nth-child(2) {
+    width: 100%;
+  }
+
+  /* On mobile, make the controls row span full width and align to edges */
+  .CartItemCard > div:last-child {
+    width: 100%;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    background-color: aqua;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+}
+
+/* Constrain width and center in list layouts */
+.CartItemCard {
+  max-width: 820px;
+  width: calc(100% - 40px);
+  margin: 0 0 1rem 0;
+}
+
+@media screen and (max-width: 900px) {
+  .CartItemCard {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* Price link style */
+.CartItemCard > div:nth-child(2) p:last-child {
+  color: #6b46ff;
+  font-weight: 600;
 }

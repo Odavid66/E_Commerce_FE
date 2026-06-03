@@ -1,0 +1,177 @@
+/* Create Account Page Styling */
+
+.CreateAccountPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F4F7FE; /* Very light gray/blue from mockup */
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Container */
+.CreateAccountPage__container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 3rem 2.5rem;
+  max-width: 460px;
+  width: 100%;
+}
+
+/* Header Section */
+.CreateAccountPage__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.CreateAccountPage__header h1 {
+  font-size: 1.75rem;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.CreateAccountPage__header p {
+  color: #4B5563;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Section */
+.CreateAccountPage__form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Password Strength Indicator */
+.PasswordStrength {
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+}
+
+.PasswordStrength__bars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.PasswordStrength__bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #E5E7EB;
+}
+
+.PasswordStrength__bar.active {
+  background-color: #059669; /* Green */
+}
+
+.PasswordStrength__text {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #059669;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Error Messages */
+.error-message {
+  color: #EF4444;
+  font-size: 0.8rem;
+  margin-top: -1.2rem;
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 500;
+}
+
+/* Divider */
+.CreateAccountPage__divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 2rem 0;
+  color: #9CA3AF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.CreateAccountPage__divider::before,
+.CreateAccountPage__divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.CreateAccountPage__divider::before {
+  margin-right: 1rem;
+}
+
+.CreateAccountPage__divider::after {
+  margin-left: 1rem;
+}
+
+/* Social Buttons */
+.CreateAccountPage__social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.SocialButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: white;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.SocialButton:hover {
+  background-color: #F9FAFB;
+}
+
+/* Footer Section */
+.CreateAccountPage__footer {
+  text-align: center;
+}
+
+.CreateAccountPage__footer p {
+  margin: 0;
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+
+.CreateAccountPage__link {
+  color: #4F46E5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.CreateAccountPage__link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 425px) {
+  .CreateAccountPage__container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .CreateAccountPage__social {
+    flex-direction: column;
+  }
+}

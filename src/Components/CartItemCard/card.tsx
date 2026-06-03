@@ -1,23 +1,79 @@
-import './card.css'
-export const CartItemCard = () => {
-    return(
-        
-            <div className="CartItemCard">
-                <img src="" alt="" />
-                <div>
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p>$99.99</p>
-                </div>
-                <div>
-                    <button><img src="" alt="" /></button>
-                    <div>
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
-                    </div>
-                </div>
-            </div>
-        
-    )
+import './card.css';
+
+/**
+ * CartItemCard Component
+ * 
+ * Displays a product card in the shopping cart.
+ * Shows product info, price, and quantity controls.
+ */
+
+interface CartItemCardProps {
+  productImage: string;           // URL of product image
+  productName: string;            // Name of the product
+  productDescription: string;     // Description of the product
+  price: number;                  // Price of the product
+  quantity: number;               // How many items in cart
+  onIncrement: () => void;        // Function called when + button clicked
+  onDecrement: () => void;        // Function called when - button clicked
+  onRemove: () => void;           // Function called when remove button clicked
 }
+
+/**
+ * CartItemCard - Renders a single cart item
+ * @param props - Product and action configurations
+ * @returns A product card with quantity controls
+ */
+export const CartItemCard = ({
+    productImage,
+    productName,
+    productDescription,
+    price,
+    quantity,
+    onIncrement,
+    onDecrement,
+    onRemove
+}: CartItemCardProps) => {
+  // Format price to always show 2 decimal places (e.g., 99.99)
+    const formattedPrice = price.toFixed(2);
+
+    return (
+    <div className="CartItemCard">
+      {/* Product Image */}
+      <img src={productImage} alt={productName} />
+
+      {/* Product Information */}
+      <div>
+        <h3>{productName}</h3>
+        <p>{productDescription}</p>
+        <p>${formattedPrice}</p>
+      </div>
+
+      {/* Quantity Controls */}
+      <div>
+        {/* Remove Button */}
+        <button onClick={onRemove} className="CartItemCard__removeBtn" aria-label={`Remove ${productName} from cart`}>
+          <span className="CartItemCard__removeIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#384152" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6 18.2 19a2 2 0 0 1-2 2H7.8a2 2 0 0 1-2-2L5 6" />
+              <path d="M10 11v6" />
+              <path d="M14 11v6" />
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+            </svg>
+          </span>
+        </button>
+
+        {/* Quantity Adjuster */}
+        <div className="CartItemCard__quantityControl">
+          <button onClick={onDecrement} className="CartItemCard__quantityBtn">
+            -
+          </button>
+          <span className="CartItemCard__quantity">{quantity}</span>
+          <button onClick={onIncrement} className="CartItemCard__quantityBtn">
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
