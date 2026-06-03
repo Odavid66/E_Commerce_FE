@@ -32,20 +32,17 @@ function App() {
 
         {/* Admin Routes with AdminLayout */}
         <Route element={<AdminLayout />}>
-          <Route path="/admin" element={<Overview />} />
-          <Route path="/admin/customers" element={<Customers />} />
+        <Route path="/admin" element={<Overview />} />
+        <Route path="/admin/customers" element={<Customers />} />
+        <Route path="/admin/products" element={<ProductInventory />} />
+        <Route path="/admin/products/create" element={<CreateProduct />} />
+        <Route path="/admin/products/edit/:id" element={<EditProduct />} />
         </Route>
 
         {/* Standalone Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/button" element={<Basebutton onClick={() => alert('Button clicked!')}>Click Me</Basebutton>} />
-        <Route path="/admin/customers" element={<Customers />} />
-
-        {/* Admin Routes */}
-        <Route path="/admin/products" element={<ProductInventory />} />
-        <Route path="/admin/products/create" element={<CreateProduct />} />
-        <Route path="/admin/products/edit/:id" element={<EditProduct />} />
       </Routes>
     </Router>
   )
