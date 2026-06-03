@@ -9,6 +9,7 @@ import { HomePage } from './Pages/Customer/HomePage/HomePage'
 import { Cart } from './Pages/Customer/Cart/Cart'
 import { Basebutton } from './Components/Button/button'
 import { Customers } from './Pages/Admin/Customers/Customers'
+import { Order } from './Pages/Customer/Order/Order'
 
 const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductInfoPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
         </Route>
 
         {/* Standalone Routes */}
