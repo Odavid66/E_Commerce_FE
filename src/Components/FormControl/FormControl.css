@@ -1,115 +1,114 @@
-/* FormControl Container - Vertical Layout (Default) */
-.FormControl {
+/* FormControl Container */
+.FormControl,
+.FormControl--inline {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
   width: 100%;
 }
 
-/* FormControl Container - Inline Layout */
-.FormControl--inline {
+/* Label Row */
+.FormControl__labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Label styling */
+.FormControl__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4B5563; /* Tailwind gray-600 */
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-  width: 100%;
+  text-transform: uppercase;
 }
 
-/* Label styling - Vertical Layout */
-.FormControl label {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 0.5rem;
-  display: block;
+/* Overriding uppercase if it's explicitly not wanted */
+.FormControl__label.normal-case {
+  text-transform: none;
 }
 
-/* Label styling - Inline Layout */
-.FormControl--inline .FormControl__label {
-  font-size: 0.9rem;
-  color: #999;
+/* Label Right (Forgot Password) */
+.FormControl__labelRight {
+  font-size: 0.875rem;
   font-weight: 500;
-  min-width: 110px;
-  text-align: right;
-  white-space: nowrap;
-  margin-bottom: 0;
 }
 
 /* Red asterisk for required fields */
-.FormControl .required,
 .FormControl__required {
-  color: #e74c3c;
-  margin-left: 0.3rem;
+  color: #EF4444; /* Tailwind red-500 */
+  margin-left: 0.25rem;
 }
 
-/* Input field styling - Vertical Layout */
-.FormControl > .FormControl__input {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
+/* Input Container */
+.FormControl__inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
-/* Input field styling - Inline Layout */
-.FormControl--inline .FormControl__input {
-  flex: 1;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.9rem;
-  border: none;
-  background-color: #f5f5f5;
-  border-radius: 0.4rem;
+/* Icon styling */
+.FormControl__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF; /* Tailwind gray-400 */
+  width: 2.75rem;
+  height: 100%;
 }
 
-/* Input base styling (shared) */
+.FormControl__icon--left {
+  left: 0;
+}
+
+.FormControl__icon--right {
+  right: 0;
+  cursor: pointer;
+}
+
+/* Input base styling */
 .FormControl__input {
+  width: 100%;
   font-family: inherit;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.2s ease;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #D1D5DB; /* Tailwind gray-300 */
+  border-radius: 0.5rem; /* 8px */
+  background-color: #FFFFFF;
+  color: #111827; /* Tailwind gray-900 */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
-/* Input focus state - Vertical Layout */
-.FormControl > .FormControl__input:focus {
-  outline: none;
-  border-color: #6c5ce7;
-  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+/* Adjust padding if icons are present */
+.FormControl__input.has-left-icon {
+  padding-left: 2.75rem;
 }
 
-/* Input focus state - Inline Layout */
-.FormControl--inline .FormControl__input:focus {
+.FormControl__input.has-right-icon {
+  padding-right: 2.75rem;
+}
+
+/* Input focus state */
+.FormControl__input:focus {
   outline: none;
-  background-color: #efefef;
+  border-color: #4F46E5; /* Tailwind indigo-600 */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 /* Placeholder text styling */
 .FormControl__input::placeholder {
-  color: #999;
+  color: #9CA3AF; /* Tailwind gray-400 */
 }
 
-/* Mobile responsive - make inputs bigger on small screens */
+/* Mobile responsive */
 @media screen and (max-width: 425px) {
-  .FormControl {
-    margin-bottom: 1.2rem;
-  }
-
-  .FormControl__input {
-    padding: 0.9rem 1rem;
-    font-size: 1.1rem;
-  }
-
-  /* Switch inline layout to vertical on mobile */
+  .FormControl,
   .FormControl--inline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
-  }
-
-  .FormControl--inline .FormControl__label {
-    min-width: auto;
-    text-align: left;
-  }
-
-  .FormControl--inline .FormControl__input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    margin-bottom: 1.25rem;
   }
 }
