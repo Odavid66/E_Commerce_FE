@@ -1,17 +1,22 @@
 /* Basebutton Component Styles */
 
 .Basebutton {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 0.5rem;
-  padding: calc(var(--cardPadding) / 3.35) calc(var(--cardPadding) / 2);
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
   transition: opacity 0.2s ease, transform 0.1s ease;
   font-weight: 500;
-  height: 40px;
+  height: 48px;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Hover effect - slight opacity change for feedback */
+/* Hover effect */
 .Basebutton:hover {
   opacity: 0.9;
   transform: translateY(-1px);
@@ -31,7 +36,7 @@
 /* Mobile responsive */
 @media screen and (max-width: 425px) {
   .Basebutton {
-    width: -webkit-fill-available;
-    padding: calc(var(--cardPadding) / 3) calc(var(--cardPadding) / 1.5);
+    height: 44px;
+    font-size: 0.95rem;
   }
 }
