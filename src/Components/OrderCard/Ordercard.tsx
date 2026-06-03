@@ -132,12 +132,14 @@ export function OrderCard({
 				</div>
 			</div>
 
-			<button type="button" className="order-card__pay-button" onClick={onPay}>
-				<span className="order-card__lock" aria-hidden="true">
-					🔒
-				</span>
-				<span>{payLabel} ${formatCurrency(total)}</span>
-			</button>
+			{status === "pending" && (
+				<button type="button" className="order-card__pay-button" onClick={onPay}>
+					<span className="order-card__lock" aria-hidden="true">
+						🔒
+					</span>
+					<span>{payLabel} ${formatCurrency(total)}</span>
+				</button>
+			)}
 
 			<p className="order-card__note">{note}</p>
 		</aside>
