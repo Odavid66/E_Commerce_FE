@@ -1,0 +1,128 @@
+.success-modal__backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+	background: rgba(236, 241, 247, 0.62);
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(7px);
+}
+
+.success-modal {
+	position: relative;
+	width: min(100%, 330px);
+	padding: 22px 24px 28px;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+	text-align: center;
+	animation: success-modal-pop 180ms ease-out;
+}
+
+.success-modal__close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	border: 0;
+	background: transparent;
+	color: #8a90a0;
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+}
+
+.success-modal__icon {
+	width: 58px;
+	height: 58px;
+	margin: 40px auto 18px;
+	border-radius: 999px;
+	display: grid;
+	place-items: center;
+	color: #0f8f46;
+	background: linear-gradient(180deg, #36e585 0%, #2ddc75 100%);
+	box-shadow: 0 0 0 8px rgba(61, 231, 134, 0.18);
+}
+
+.success-modal__icon svg {
+	width: 24px;
+	height: 24px;
+}
+
+.success-modal__title {
+	margin: 0;
+	font-size: 29px;
+	line-height: 1.1;
+	font-weight: 700;
+	letter-spacing: -0.04em;
+	color: #111827;
+}
+
+.success-modal__message {
+	margin: 12px auto 0;
+	max-width: 250px;
+	color: #51576a;
+	font-size: 15px;
+	line-height: 1.55;
+}
+
+.success-modal__action {
+	width: 100%;
+	margin-top: 42px;
+	border: 0;
+	border-radius: 10px;
+	padding: 14px 18px;
+	background: linear-gradient(180deg, #6760ff 0%, #6456f7 100%);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	box-shadow: 0 12px 24px rgba(100, 86, 247, 0.28);
+}
+
+.success-modal__action:hover {
+	filter: brightness(1.03);
+}
+
+.success-modal__action:focus-visible,
+.success-modal__close:focus-visible {
+	outline: 2px solid #635bff;
+	outline-offset: 3px;
+}
+
+@keyframes success-modal-pop {
+	from {
+		transform: translateY(10px) scale(0.98);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0) scale(1);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 480px) {
+	.success-modal__backdrop {
+		padding: 16px;
+	}
+
+	.success-modal {
+		width: min(100%, 100%);
+		padding: 20px 18px 22px;
+	}
+
+	.success-modal__title {
+		font-size: 24px;
+	}
+
+	.success-modal__message {
+		max-width: none;
+	}
+
+	.success-modal__action {
+		margin-top: 34px;
+	}
+}

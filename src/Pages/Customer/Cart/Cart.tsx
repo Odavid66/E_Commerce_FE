@@ -105,6 +105,9 @@ export function Cart() {
                 onRemove={() => {}}
               />
             ))}
+            <button type="button" className="cart__clear-button" onClick={handleClearCart}>
+                Clear Cart
+            </button>
           </div>
 
           <div className="cart-summary">
@@ -131,10 +134,6 @@ export function Cart() {
               <Basebutton backgroundColor="#6b46ff" color="#fff" width="100%" onClick={handleProceedToCheckout}>
                 Proceed to Checkout
               </Basebutton>
-
-              <button type="button" className="cart-summary__clear-button" onClick={handleClearCart}>
-                Clear Cart
-              </button>
 
               <p className="cart-summary__small">By clicking checkout, you agree to our Terms of Service and Privacy Policy.</p>
             </div>
