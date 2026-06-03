@@ -3,7 +3,7 @@ import type { SubmitEvent } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateAccount.css';
 import { FormControl } from '../../../Components/FormControl/FormControl';
-import { Basebutton } from '../../../Components/Button/button';
+import { Basebutton } from '../../../Components/button/button';
 
 const EyeIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
