@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Login } from './Pages/Auth/Login/Login'
 import { CreateAccount } from './Pages/Auth/CreateAccount/CreateAccount'
 import { Layout } from './Components/Layout/Layout'
+import { AdminLayout } from './Components/Layout/AdminLayout'
 // import { ProductsPage } from './Pages/Customer/Product/ProductPage'
 import { ProductInfoPage } from './Pages/Customer/Product/ProductInfoPage'
 import { HomePage } from './Pages/Customer/HomePage/HomePage'
@@ -12,6 +13,8 @@ import { Customers } from './Pages/Admin/Customers/Customers'
 import { ProductInventory } from './Pages/Admin/Product/ProductInventory/ProductInventory'
 import { CreateProduct } from './Pages/Admin/Product/CreateProduct/CreateProduct'
 import { EditProduct } from './Pages/Admin/Product/EditProduct/EditProduct'
+import { Order } from './Pages/Customer/Order/Order'
+import { Overview } from './Pages/Admin/Overview/Overview'
 
 const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -24,6 +27,13 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductInfoPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
+        </Route>
+
+        {/* Admin Routes with AdminLayout */}
+        <Route element={<AdminLayout />}>
+          <Route path="/admin" element={<Overview />} />
+          <Route path="/admin/customers" element={<Customers />} />
         </Route>
 
         {/* Standalone Routes */}

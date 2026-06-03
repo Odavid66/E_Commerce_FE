@@ -1,0 +1,139 @@
+.sidenav {
+  width: 250px;
+  height: 100vh;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+  flex-shrink: 0;
+}
+
+.sidenav__header {
+  margin-bottom: 40px;
+}
+
+.sidenav__logo {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  display: flex;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.logo-dark {
+  color: #111827;
+}
+
+.logo-blue {
+  color: #5b5cff;
+}
+
+.sidenav__subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.sidenav__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidenav__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #4b5563;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidenav__link:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.sidenav__link.active {
+  background-color: #5b5cff;
+  color: #ffffff;
+}
+
+.sidenav__link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav__spacer {
+  flex-grow: 1;
+}
+
+.sidenav__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  margin-bottom: 12px;
+}
+
+.profile__avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #e6f6f4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d9488;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 2px 0;
+}
+
+.profile__role {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.sidenav__footer {
+  padding-top: 0;
+}
+
+.btn-view-store {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #e0e7ff;
+  color: #4f46e5;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-view-store:hover {
+  background-color: #c7d2fe;
+}
