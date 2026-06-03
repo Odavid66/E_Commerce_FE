@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { type OrderCardItem } from '../../../Components/OrderCard/Ordercard'
+import { AdminTable } from '../../../Components/AdminTable/AdminTable'
 import './Orders.css'
 
 type OrderStatusFilter = 'all' | 'pending' | 'paid'
@@ -103,6 +104,12 @@ type OrderStatusFilter = 'all' | 'pending' | 'paid'
     },
     ]
 
+    const columns = [
+        { key: 'id', label: 'ORDER ID' },
+        { key: 'createdAt', label: 'CREATED AT' },
+        { key: 'status', label: 'STATUS' },
+        { key: 'TotalAmount', label: 'AMOUNT' }
+    ]
     export function Orders() {
     const [activeFilter, setActiveFilter] = useState<OrderStatusFilter>('pending')
 
@@ -144,24 +151,7 @@ type OrderStatusFilter = 'all' | 'pending' | 'paid'
             <div className="order-page__empty">No orders found for this filter.</div>
         ) : (
             <section className="order-page__list" aria-label="Orders list">
-            
-                <table className="order-card">
-                
-                    <tr className="order-card__header-row">
-                        <th id="order-id"> <span>ORDER ID</span></th>
-                        <th id="created-at"><span>CREATED AT</span></th>
-                        <th id="status"><span>STATUS</span></th>
-                        <th id="amount"><span>AMOUNT</span></th>
-                    </tr>   
-                    {filteredOrders.map((order) => (
-                    <tr className="order-card__row">
-                        <td >{order.id}</td>
-                        <td >{new Date(order.createdAt).toLocaleString()}</td>
-                        <td >{order.status}</td>
-                        <td >${order.TotalAmount.toFixed(2)}</td>
-                    </tr>
-                    ))}
-                </table>
+                <AdminTable columns={columns} data={filteredOrders} nav="orders"/>
             
             </section>
         )}
