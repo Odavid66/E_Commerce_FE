@@ -8,11 +8,12 @@ interface Column {
 interface AdminTableProps {
   columns: Column[];
   data: Record<string, any>[];
+  nav: string;
   onEdit?: (row: Record<string, any>) => void;
   onDelete?: (row: Record<string, any>) => void;
 }
 
-export const AdminTable = ({ columns, data, onEdit, onDelete }: AdminTableProps) => {
+export const AdminTable = ({ columns, data, nav, onEdit, onDelete }: AdminTableProps) => {
   return (
     <div className="admin-table__wrapper">
       <table className="admin-table">
@@ -25,7 +26,7 @@ export const AdminTable = ({ columns, data, onEdit, onDelete }: AdminTableProps)
                 {col.label}
               </th>
             ))}
-            <th className="admin-table__th">Actions</th>
+            { nav === "admin" && (<th className="admin-table__th">Actions</th>)}
           </tr>
         </thead>
 
@@ -38,20 +39,21 @@ export const AdminTable = ({ columns, data, onEdit, onDelete }: AdminTableProps)
                   {row[col.key]}
                 </td>
               ))}
-              <td className="admin-table__td admin-table__actions">
-                <button
-                  className="admin-table__btn admin-table__btn--edit"
-                  onClick={() => onEdit?.(row)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="admin-table__btn admin-table__btn--delete"
-                  onClick={() => onDelete?.(row)}
-                >
+              {nav === "admin" && (
+                <td className="admin-table__td admin-table__actions">
+                  <button
+                    className="admin-table__btn admin-table__btn--edit"
+                    onClick={() => onEdit?.(row)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="admin-table__btn admin-table__btn--delete"
+                    onClick={() => onDelete?.(row)}
+                  >
                   Delete
                 </button>
-              </td>
+              </td>)}
             </tr>
           ))}
 

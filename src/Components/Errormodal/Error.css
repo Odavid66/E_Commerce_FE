@@ -1,0 +1,148 @@
+.error-modal__backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+	background: rgba(236, 241, 247, 0.62);
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(7px);
+}
+
+.error-modal {
+	position: relative;
+	width: min(100%, 360px);
+	padding: 22px 24px 30px;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.98);
+	box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+	text-align: center;
+	animation: error-modal-pop 180ms ease-out;
+}
+
+.error-modal__close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	border: 0;
+	background: transparent;
+	color: #8a90a0;
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+}
+
+.error-modal__icon {
+	width: 58px;
+	height: 58px;
+	margin: 38px auto 18px;
+	border-radius: 999px;
+	display: grid;
+	place-items: center;
+	color: #c81e1e;
+	background: linear-gradient(180deg, #f9e7e7 0%, #f7dede 100%);
+	box-shadow: 0 0 0 8px rgba(243, 164, 164, 0.18);
+}
+
+.error-modal__icon svg {
+	width: 26px;
+	height: 26px;
+}
+
+.error-modal__title {
+	margin: 0;
+	font-size: 29px;
+	line-height: 1.15;
+	font-weight: 700;
+	letter-spacing: -0.04em;
+	color: #111827;
+}
+
+.error-modal__message {
+	margin: 14px auto 0;
+	max-width: 260px;
+	color: #51576a;
+	font-size: 15px;
+	line-height: 1.55;
+}
+
+.error-modal__actions {
+	display: grid;
+	gap: 14px;
+	margin-top: 36px;
+}
+
+.error-modal__action {
+	width: 100%;
+	border: 0;
+	border-radius: 10px;
+	padding: 14px 18px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: transform 140ms ease, filter 140ms ease, opacity 140ms ease;
+}
+
+.error-modal__action--primary {
+	background: linear-gradient(180deg, #6a63ff 0%, #6456f7 100%);
+	color: #fff;
+	box-shadow: 0 12px 24px rgba(100, 86, 247, 0.28);
+}
+
+.error-modal__action--secondary {
+	background: transparent;
+	color: #384152;
+	padding-block: 6px;
+}
+
+.error-modal__action:hover {
+	filter: brightness(1.03);
+}
+
+.error-modal__action--secondary:hover {
+	opacity: 0.9;
+	filter: none;
+}
+
+.error-modal__action:focus-visible,
+.error-modal__close:focus-visible {
+	outline: 2px solid #635bff;
+	outline-offset: 3px;
+}
+
+@keyframes error-modal-pop {
+	from {
+		transform: translateY(10px) scale(0.98);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0) scale(1);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 480px) {
+	.error-modal__backdrop {
+		padding: 16px;
+	}
+
+	.error-modal {
+		width: min(100%, 100%);
+		padding: 20px 18px 24px;
+	}
+
+	.error-modal__title {
+		font-size: 24px;
+	}
+
+	.error-modal__message {
+		max-width: none;
+	}
+
+	.error-modal__actions {
+		margin-top: 30px;
+	}
+}

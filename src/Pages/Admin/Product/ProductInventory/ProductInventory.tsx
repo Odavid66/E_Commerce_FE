@@ -59,6 +59,7 @@ export const ProductInventory = () => {
       <AdminTable
         columns={columns}
         data={filtered}
+        nav="admin"
         onEdit={(row) => navigate(`/admin/products/edit/${row.id}`)}
         onDelete={(row) => console.log("Delete:", row.name)}
       />
