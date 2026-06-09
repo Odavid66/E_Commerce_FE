@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { FormControl } from '../../../Components/FormControl/FormControl';
-import { Basebutton } from '../../../Components/button/button';
+import { Basebutton } from '../../../Components/Button/button';
+import { fetchClient } from '../../../utils/fetchClient';
+import { useAuthStore } from '../../../store/authStore';
 
 // Icons
 const ShieldIcon = () => (
@@ -58,6 +60,14 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [staySignedIn, setStaySignedIn] = useState(false);
   const [errors, setErrors] = useState({ email: '', password: '' });
+  
+  // API States
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState('');
+
+  // Hooks
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const validateForm = (): boolean => {
     const newErrors = { email: '', password: '' };
@@ -70,18 +80,40 @@ export const Login = () => {
 
     if (!password.trim()) {
       newErrors.password = 'Password is required';
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+    } else if (password.length < 4) {
+      newErrors.password = 'Password must be at least 4 characters';
     }
 
     setErrors(newErrors);
     return !newErrors.email && !newErrors.password;
   };
 
-  const handleLogin = (e: SubmitEvent<HTMLFormElement>) => {
+const handleLogin = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setApiError('');
+
     if (validateForm()) {
-      console.log('Login attempt:', { email, password, staySignedIn });
+      setIsLoading(true);
+      try {
+        // Execute the custom fetchClient POST request
+    const response = await fetchClient('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email, password }) // <-- Wrap the object in JSON.stringify()
+        });
+
+        // Pass tokens to Zustand. 
+        // IMPORTANT: Verify that your .NET backend returns these exact property names in its JSON
+        login(response.token, response.refreshToken);
+
+        // Redirect safely using React Router instead of forcing a hard page refresh
+        navigate('/');
+
+      } catch (err: any) {
+        console.error('Login attempt failed:', err);
+        setApiError(err.message || 'Invalid credentials or server error.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -96,6 +128,13 @@ export const Login = () => {
           <p>Access your NexusStore account</p>
         </div>
 
+        {/* Display Network/API Errors here */}
+        {apiError && (
+          <div style={{ color: '#ef4444', backgroundColor: '#fef2f2', padding: '10px', borderRadius: '6px', marginBottom: '15px', border: '1px solid #f87171', fontSize: '14px', textAlign: 'center' }}>
+            {apiError}
+          </div>
+        )}
+
         <form onSubmit={handleLogin} className="LoginPage__form">
           <FormControl
             label="Email address"
@@ -108,7 +147,7 @@ export const Login = () => {
             leftIcon={<EnvelopeIcon />}
             labelClass="normal-case"
           />
-          {errors.email && <span className="error-message">{errors.email}</span>}
+          {errors.email && <span className="error-message" style={{color: 'red', fontSize: '12px', marginTop: '-10px', display: 'block'}}>{errors.email}</span>}
 
           <FormControl
             label="Password"
@@ -122,7 +161,7 @@ export const Login = () => {
             labelRight={<Link to="#" className="LoginPage__forgotPassword">Forgot Password?</Link>}
             labelClass="normal-case"
           />
-          {errors.password && <span className="error-message">{errors.password}</span>}
+          {errors.password && <span className="error-message" style={{color: 'red', fontSize: '12px', marginTop: '-10px', display: 'block'}}>{errors.password}</span>}
 
           <div className="LoginPage__checkbox">
             <input
@@ -135,11 +174,17 @@ export const Login = () => {
           </div>
 
           <Basebutton
-            backgroundColor="#6366F1"
+            backgroundColor={isLoading ? "#9ca3af" : "#6366F1"} // Gray out when loading
             color="white"
             type="submit"
+            // Ensure Basebutton accepts a disabled prop if you haven't implemented that yet
+            disabled={isLoading} 
           >
-            Sign In <span style={{display: 'flex', marginLeft: '8px'}}><ArrowRightIcon /></span>
+            {isLoading ? 'Signing in...' : (
+              <>
+                Sign In <span style={{display: 'flex', marginLeft: '8px'}}><ArrowRightIcon /></span>
+              </>
+            )}
           </Basebutton>
         </form>
 
