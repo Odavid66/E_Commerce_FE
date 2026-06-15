@@ -5,6 +5,7 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -36,8 +37,8 @@
 
 /* ── Body ─────────────────────────────────────────── */
 .product-card__body {
-  padding: 14px 16px 16px;
   display: flex;
+  padding: 0px 16px;
   flex-direction: column;
   gap: 6px;
   flex: 1;
@@ -63,6 +64,14 @@
   font-weight: 700;
   color: #111827;
   margin: 0;
+}
+.product-card__error {
+  font-size: 0.85rem;
+  color: #ef4444;
+  margin-top: 8px;
+}
+.product-card__body-buttoncover{
+  padding: 0px 16px;
 }
 
 /* ── Mobile ───────────────────────────────────────── */

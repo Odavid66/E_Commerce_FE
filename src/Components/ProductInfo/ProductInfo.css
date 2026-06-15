@@ -97,6 +97,11 @@
   color: #16a34a;
   font-weight: 500;
 }
+.product-info__error {
+  font-size: 0.85rem;
+  color: #ef4444;
+  margin-top: 8px;
+}
 
 /* ── Actions ──────────────────────────────────────── */
 .product-info__actions {

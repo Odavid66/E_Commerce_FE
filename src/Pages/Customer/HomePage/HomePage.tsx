@@ -21,9 +21,6 @@ export const HomePage = () => {
     navigate(`/product/${product.id}`);
   };
 
-  const handleAddToCart = (product: Product) => {
-    console.log("Added to cart:", product.name);
-  };
 
   return (
     <div className="home">
@@ -86,7 +83,6 @@ export const HomePage = () => {
 
           <ProductGrid
             products={dummyProducts}
-            onAddToCart={handleAddToCart}
             onViewDetails={handleViewDetails}
           />
         </div>

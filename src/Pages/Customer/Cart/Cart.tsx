@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { CartItemCard } from '../../../Components/CartItemCard/card'
 import { Basebutton } from '../../../Components/button/button'
 import { GetUserCart, type CartItem } from '../../../utils/GetUserCart'
+import { fetchClient } from '../../../utils/fetchClient'
 import './Cart.css'
 
 export function Cart() {
@@ -47,7 +48,7 @@ export function Cart() {
       setError(null)
 
       // Replace the endpoint with your real cart clear API route.
-      const response = await fetch('/api/cart/clear', {
+      const response = await fetchClient('/api/Cart/DeleteCart', {
         method: 'DELETE',
       })
 
@@ -95,13 +96,12 @@ export function Cart() {
             {cartItems.map((item) => (
               <CartItemCard
                 key={item.id}
+                productId={item.productId}
                 productImage={item.productImage}
                 productName={item.productName}
                 productDescription={item.productDescription}
                 price={item.price}
                 quantity={item.quantity}
-                onIncrement={() => {}}
-                onDecrement={() => {}}
                 onRemove={() => {}}
               />
             ))}

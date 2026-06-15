@@ -3,11 +3,10 @@ import { ProductCard, type Product } from '../ProductCard/ProductCardComponent'
 
 interface ProductGridProps {
   products: Product[]
-  onAddToCart: (product: Product) => void
   onViewDetails: (product: Product) => void
 }
 
-export const ProductGrid = ({ products, onAddToCart, onViewDetails }: ProductGridProps) => {
+export const ProductGrid = ({ products, onViewDetails }: ProductGridProps) => {
   if (products.length === 0) {
     return <div className="product-grid__empty">No products found.</div>
   }
@@ -18,7 +17,6 @@ export const ProductGrid = ({ products, onAddToCart, onViewDetails }: ProductGri
         <ProductCard
           key={product.id}
           product={product}
-          onAddToCart={onAddToCart}
           onViewDetails={onViewDetails}
         />
       ))}

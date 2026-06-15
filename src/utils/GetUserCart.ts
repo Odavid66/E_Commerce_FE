@@ -1,5 +1,9 @@
+import { fetchClient } from "./fetchClient"
+import { useQuery } from "@tanstack/react-query"
+
 export interface CartItem {
     id: string
+    productId: number
     productImage: string
     productName: string
     productDescription: string
@@ -10,6 +14,7 @@ export interface CartItem {
 const mockCartItems: CartItem[] = [
     {
         id: 'cart-item-1',
+        productId: 1,
         productImage: 'https://images.unsplash.com/photo-1523395243481-163f8f5d2dd4?auto=format&fit=crop&w=400&q=80',
         productName: 'Minimal Leather Wallet',
         productDescription: 'Compact full-grain leather wallet with card slots.',
@@ -18,6 +23,7 @@ const mockCartItems: CartItem[] = [
     },
     {
         id: 'cart-item-2',
+        productId: 2,
         productImage: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80',
         productName: 'Everyday Sneakers',
         productDescription: 'Lightweight sneakers designed for all-day wear.',
@@ -26,6 +32,7 @@ const mockCartItems: CartItem[] = [
     },
     {
         id: 'cart-item-1',
+        productId: 1,
         productImage: 'https://images.unsplash.com/photo-1523395243481-163f8f5d2dd4?auto=format&fit=crop&w=400&q=80',
         productName: 'Minimal Leather Wallet',
         productDescription: 'Compact full-grain leather wallet with card slots.',
@@ -34,6 +41,7 @@ const mockCartItems: CartItem[] = [
     },
     {
         id: 'cart-item-1',
+        productId: 1,
         productImage: 'https://images.unsplash.com/photo-1523395243481-163f8f5d2dd4?auto=format&fit=crop&w=400&q=80',
         productName: 'Minimal Leather Wallet',
         productDescription: 'Compact full-grain leather wallet with card slots.',
@@ -42,6 +50,7 @@ const mockCartItems: CartItem[] = [
     },
     {
         id: 'cart-item-1',
+        productId: 1,
         productImage: 'https://images.unsplash.com/photo-1523395243481-163f8f5d2dd4?auto=format&fit=crop&w=400&q=80',
         productName: 'Minimal Leather Wallet',
         productDescription: 'Compact full-grain leather wallet with card slots.',
@@ -50,6 +59,7 @@ const mockCartItems: CartItem[] = [
     },
     {
         id: 'cart-item-1',
+        productId: 1,
         productImage: 'https://images.unsplash.com/photo-1523395243481-163f8f5d2dd4?auto=format&fit=crop&w=400&q=80',
         productName: 'Minimal Leather Wallet',
         productDescription: 'Compact full-grain leather wallet with card slots.',
@@ -59,6 +69,5 @@ const mockCartItems: CartItem[] = [
 ]
 
 export async function GetUserCart(): Promise<CartItem[]> {
-  // Replace this mock implementation with the real API call when the backend endpoint is ready.
     return Promise.resolve(mockCartItems)
 }
