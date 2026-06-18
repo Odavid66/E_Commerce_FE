@@ -1,33 +1,37 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CartItemCard } from '../../../Components/CartItemCard/card'
 import { Basebutton } from '../../../Components/button/button'
 import { GetUserCart, type CartItem } from '../../../utils/GetUserCart'
-import { fetchClient } from '../../../utils/fetchClient'
+import { DeleteCart } from '../../../utils/DeleteCart'
+import { Checkout } from '../../../utils/Checkout'
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import './Cart.css'
 
 export function Cart() {
   const navigate = useNavigate()
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    const loadCart = async () => {
-      try {
-        setIsLoading(true)
-        const items = await GetUserCart()
-        setCartItems(items)
-      } catch {
-        setError('We could not load your cart right now.')
-      } finally {
-        setIsLoading(false)
-      }
-    }
 
-    void loadCart()
-  }, [])
+const { data, isLoading, error } = useQuery<CartItem[], Error>({
+    queryKey: ['userCart'],
+    queryFn: GetUserCart,
+  })
+  if (isLoading) {
+    return <div className="cart-page__state">Loading your cart...</div>
+  }
+  if (error) {
+    return <div className="cart-page__state cart-page__state--error">{error.message}</div>
+  }
+  const cartItems = data || [];
 
+const queryClient = useQueryClient()
+
+const clearCartMutation = useMutation({
+  mutationFn: DeleteCart,
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['cart'] })
+  }
+})
+  
   // Ensure numeric arithmetic even if API returns strings or missing values
   const subtotal = cartItems.reduce((total, item) => {
     const price = Number(item.price) || 0
@@ -44,34 +48,20 @@ export function Cart() {
   }
 
   const handleClearCart = async () => {
-    try {
-      setError(null)
-
-      // Replace the endpoint with your real cart clear API route.
-      const response = await fetchClient('/api/Cart/DeleteCart', {
-        method: 'DELETE',
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to clear cart')
-      }
-
-      setCartItems([])
-    } catch {
-      setError('We could not clear your cart right now.')
-    }
+      clearCartMutation.mutate()
   }
 
-  const handleProceedToCheckout = () => {
-    // Replace with real checkout API response later.
-    const isSuccess = cartItems.length > 0
+  const handleProceedToCheckout = async () => {
+    try {
+    await Checkout()
 
-    if (isSuccess) {
-      navigate('/order')
-      return
-    }
+    navigate('/orders')
 
-    setError('Checkout failed. Please try again.')
+  } catch (error: any) {
+    
+    console.error(error.message)
+    alert('Checkout failed: ' + error.message)
+  }
   }
 
   return (
@@ -84,11 +74,7 @@ export function Cart() {
         <p className="cart-page__summary">{cartItems.length} items · ${formatCurrency(subtotal)}</p>
       </section>
 
-      {isLoading ? (
-        <div className="cart-page__state">Loading your cart...</div>
-      ) : error ? (
-        <div className="cart-page__state cart-page__state--error">{error}</div>
-      ) : cartItems.length === 0 ? (
+      {cartItems.length === 0 ? (
         <div className="cart-page__state">Your cart is empty.</div>
       ) : (
         <div className="cart-container">
