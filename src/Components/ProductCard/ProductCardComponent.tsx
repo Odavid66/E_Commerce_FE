@@ -4,10 +4,13 @@ import { Basebutton } from '../button/button';
 export interface Product {
   id: number;
   name: string;
+  description?: string;
+  categoryId?: number | null;
+  categoryName?: string;
   price: number;
-  image: string;
-  category: string;
-  description: string;
+  stock?: number;
+  imageUrl: string;
+  created?: string;
 }
 
 interface ProductCardProps {
@@ -22,12 +25,12 @@ export const ProductCard = ({ product, onAddToCart, onViewDetails }: ProductCard
 
       {/* Product Image */}
       <div className="product-card__image-wrapper">
-        <img src={product.image} alt={product.name} className="product-card__image" />
+        <img src={product.imageUrl} alt={product.name} className="product-card__image" />
       </div>
 
       {/* Product Info */}
       <div className="product-card__body">
-        <span className="product-card__category">{product.category}</span>
+        <span className="product-card__category">{product.categoryName}</span>
         <h3 className="product-card__name">{product.name}</h3>
         <p className="product-card__price">${product.price.toFixed(2)}</p>
 

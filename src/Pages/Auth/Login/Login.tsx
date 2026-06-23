@@ -3,7 +3,7 @@ import type { SubmitEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { FormControl } from '../../../Components/FormControl/FormControl';
-import { Basebutton } from '../../../Components/Button/button';
+import { Basebutton } from '../../../Components/button/button';
 import { fetchClient } from '../../../utils/fetchClient';
 import { useAuthStore } from '../../../store/authStore';
 

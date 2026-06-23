@@ -2,6 +2,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ProductInfo } from '../../../Components/ProductInfo/ProductInfo';
 import type { Product } from '../../../Components/ProductCard/ProductCardComponent';
 import jersey from '../../../assets/jersey.webp';
+import { useState, useEffect} from 'react';
+import { GetProducts } from '../../../services/productservice';
+import { GetCategories } from '../../../services/categoryservice';
 
 const dummyProducts: Product[] = [
   { id: 1, name: "Bayern Munich Jersey", price: 89.99, image: jersey, category: "Jerseys", description: "Official Bayern Munich home jersey. Comfortable and stylish." },
@@ -16,10 +19,28 @@ const dummyReviews = [
 ];
 
 export const ProductInfoPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  // const { id } = useParams();
+  // const navigate = useNavigate();
 
-  const product = dummyProducts.find(p => p.id === Number(id));
+  // const [product, setProduct] = useState('');
+  // const [relatedProducts, setRelatedProducts] = useState('');
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [errorm setError] = useState('');
+
+  // useEffect(() => {
+  //   fetchProductData();
+  // });
+
+  // const fetchProductData = async() => {
+  //   try {
+  //     setIsLoading(true);
+  //     const
+  //   }catch (err: any) {
+
+  //   }finally{
+
+  //   }
+  // }
 
   if (!product) {
     return (
