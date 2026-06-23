@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminForm } from '../../../../Components/AdminForm/AdminForm';
 import { Basebutton } from '../../../../Components/button/button';
 import './CreateProduct.css';
+import { CreateProduct as CreateProductService } from '../../../../services/productservice';
+import { GetCategories, CreateCategory } from '../../../../services/categoryservice';
 
 export const CreateProduct = () => {
   const navigate = useNavigate();
@@ -10,14 +12,58 @@ export const CreateProduct = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [discount, setDiscount] = useState('');
   const [stock, setStock] = useState('');
-  const [status, setStatus] = useState('active');
-  const [category, setCategory] = useState('electronics');
+  const [categories, setCategories] = useState<any[]>([]);
+  const [saving, setSaving] = useState(false);
+  const [showNewCategory, setShowNewCategory] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSave = () => {
-    console.log({ title, description, price, discount, stock, status, category });
-    navigate('/admin/products');
+  const fetchCategories = async () => {
+    try {
+      const data = await GetCategories();
+      setCategories(data);
+    } catch (err: any) {
+      setError(err.message || 'Failed to get categories');
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const handleAddcategory = async () => {
+    if(!newCategory.trim()) return;
+    try {
+      const data = await CreateCategory({ name: newCategory });
+      console.log('CategoryCreated:', data)
+      setCategories([...categories, data]);
+      setSelectedCategory(data?.id || data);
+      setNewCategory('');
+      setShowNewCategory(false);
+    }catch (err: any) {
+      setError(err.message || "Failed to create category");
+    }
+  }
+
+  const handleSave = async() => {
+    try {
+      setSaving(true);
+      await CreateProductService({
+        name: title,
+        price: Number(price),
+        stock: Number(stock),
+        description: description,
+        imageUrl: "",
+        category: selectedCategory,
+      });
+      navigate('/admin/products');
+    } catch (err: any) {
+      setError(err.message || 'Failed to create products');
+    }finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -47,11 +93,13 @@ export const CreateProduct = () => {
             color="#ffffff"
             width="auto"
             onClick={handleSave}
+            disabled={saving}
           >
-            Save Changes
+            {saving ? 'Saving...': 'Save Changes'}
           </Basebutton>
         </div>
       </div>
+      {error && <p className='create-product__error'>{error}</p>}
 
       {/* Body */}
       <div className="create-product__body">
@@ -107,17 +155,7 @@ export const CreateProduct = () => {
             <h2 className="create-product__section-title">
               💰 Status & Pricing
             </h2>
-            <AdminForm
-              label="Status"
-              type="select"
-              value={status}
-              onChange={setStatus}
-              options={[
-                { label: "Active", value: "active" },
-                { label: "Draft", value: "draft" },
-                { label: "Archived", value: "archived" },
-              ]}
-            />
+          
             <div className="create-product__row">
               <AdminForm
                 label="Price ($)"
@@ -126,13 +164,6 @@ export const CreateProduct = () => {
                 value={price}
                 onChange={setPrice}
                 required
-              />
-              <AdminForm
-                label="Discount (%)"
-                type="number"
-                placeholder="0"
-                value={discount}
-                onChange={setDiscount}
               />
             </div>
             <AdminForm
@@ -153,15 +184,49 @@ export const CreateProduct = () => {
             <AdminForm
               label="Category"
               type="select"
-              value={category}
-              onChange={setCategory}
-              options={[
-                { label: "Electronics", value: "electronics" },
-                { label: "Accessories", value: "accessories" },
-                { label: "Footwear", value: "footwear" },
-                { label: "Fashion", value: "fashion" },
-              ]}
+              value={selectedCategory}
+              onChange={setSelectedCategory}
+              options={categories.map((c: any) => ({ label: c.name || c.label, value: c.id || c.value || c }))}
             />
+
+            {/* Add new category */}
+            {!showNewCategory ? (
+              <button 
+                className="create-product__add-category"
+                onClick={() => setShowNewCategory(true)}>
+                  + Add New Category
+              </button>
+            ) : (
+              <div className="create-product__new-category">
+                <AdminForm
+                  label="New Category Name"
+                  type="text"
+                  placeholder='Add Category'
+                  value={newCategory}
+                  onChange={setNewCategory}
+                />
+                <div className="create-product__new-category-actions">
+                  <Basebutton
+                    backgroundColor='#6366f1'
+                    color='#ffffff'
+                    width='auto'
+                    onClick={handleAddcategory}
+                  >
+                    Add
+                  </Basebutton>
+                  <Basebutton
+                    backgroundColor='transparent'
+                    color='#6b7280'
+                    width='auto'
+                    onClick={() => setShowNewCategory(false)}
+                  >
+                    Cancel
+                  </Basebutton>
+
+                </div>
+              </div>
+            )}
+             
           </div>
 
         </div>
