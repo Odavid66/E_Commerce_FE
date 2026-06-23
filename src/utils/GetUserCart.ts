@@ -13,7 +13,7 @@ export interface CartItem {
 
 
 export async function GetUserCart(): Promise<CartItem[]> {
-    const response = await fetchClient('/api/Cart/GetCartByUserId', {
+    const response = await fetchClient('/api/Cart', {
         method: 'GET',
     })
     return response

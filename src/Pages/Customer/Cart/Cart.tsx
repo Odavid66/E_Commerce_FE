@@ -15,6 +15,16 @@ const { data, isLoading, error } = useQuery<CartItem[], Error>({
     queryKey: ['userCart'],
     queryFn: GetUserCart,
   })
+
+  const queryClient = useQueryClient()
+
+  const clearCartMutation = useMutation({
+    mutationFn: DeleteCart,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userCart'] })
+    }
+  })
+
   if (isLoading) {
     return <div className="cart-page__state">Loading your cart...</div>
   }
@@ -22,15 +32,6 @@ const { data, isLoading, error } = useQuery<CartItem[], Error>({
     return <div className="cart-page__state cart-page__state--error">{error.message}</div>
   }
   const cartItems = data || [];
-
-const queryClient = useQueryClient()
-
-const clearCartMutation = useMutation({
-  mutationFn: DeleteCart,
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['cart'] })
-  }
-})
   
   // Ensure numeric arithmetic even if API returns strings or missing values
   const subtotal = cartItems.reduce((total, item) => {

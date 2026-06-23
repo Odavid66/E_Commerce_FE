@@ -19,13 +19,6 @@ export function Order() {
     queryKey: ['userOrders'],
     queryFn: GetUserOrders,
   })
-  if (isLoading) {
-    return <div className="order-page__state">Loading your orders...</div>
-  }
-  if (error) {
-    return <div className="order-page__state order-page__state--error">{error.message}</div>
-  }
-
 
   const ordersToDisplay = data || []
 
@@ -37,6 +30,12 @@ const filteredOrders = useMemo(() => {
 
   return ordersToDisplay.filter((order) => order.status === activeFilter)
 }, [activeFilter, ordersToDisplay])
+  if (isLoading) {
+    return <div className="order-page__state">Loading your orders...</div>
+  }
+  if (error) {
+    return <div className="order-page__state order-page__state--error">{error.message}</div>
+  }
 
   const getFilterLabel = (filter: OrderStatusFilter) => {
     if (filter === 'all') return 'All'
