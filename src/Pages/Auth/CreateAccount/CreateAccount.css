@@ -46,6 +46,16 @@
   flex-direction: column;
 }
 
+/* Name Row (First Name + Last Name side by side) */
+.CreateAccountPage__name-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.CreateAccountPage__name-field {
+  flex: 1;
+}
+
 /* Password Strength Indicator */
 .PasswordStrength {
   margin-top: -1rem;

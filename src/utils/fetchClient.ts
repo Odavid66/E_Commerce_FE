@@ -15,7 +15,12 @@ const processQueue = (error: any, token: string | null = null) => {
     failedQueue = [];
 };
 
-export const fetchClient = async (endpoint: string, customConfig: RequestInit = {}) => {
+// Allow body to be a plain object — fetchClient handles JSON.stringify internally
+type FetchClientConfig = Omit<RequestInit, 'body'> & {
+    body?: BodyInit | object | null;
+};
+
+export const fetchClient = async (endpoint: string, customConfig: FetchClientConfig = {}) => {
     const baseUrl = 'https://e-commerce-api-yojz.onrender.com';
     // Always read fresh from the vault
     let token = localStorage.getItem('accessToken'); 

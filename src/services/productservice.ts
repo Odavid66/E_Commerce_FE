@@ -9,7 +9,7 @@ export const GetProducts = async (category?: number) : Promise<Product[]> => {
     return await fetchClient (url, {method: 'GET'});
 };
 
-export const GetProductById = async (id: number) : Promise<Product[]> => {
+export const GetProductById = async (id: number) : Promise<Product> => {
     return await fetchClient (`/api/Product/${id}/`, {method: 'GET'});
 };
 
@@ -31,7 +31,7 @@ export const CreateProduct = async(data: {
 }) => {
     return await fetchClient(`/api/Product/`, {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: data,
     });
 };
 
@@ -45,7 +45,7 @@ export const UpdateProduct = async(productId: number, data: {
 }) => {
     return await fetchClient(`/api/Product/${productId}/`, {
         method: 'PATCH',
-        body: JSON.stringify(data),
+        body: data,
     });
 };
 

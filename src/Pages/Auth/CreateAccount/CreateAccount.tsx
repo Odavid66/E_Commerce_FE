@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './CreateAccount.css';
 import { FormControl } from '../../../Components/FormControl/FormControl';
-import { Basebutton } from '../../../Components/button/button';
+import { Basebutton } from '../../../Components/Button/button';
+import { registerUser } from '../../../services/authService';
+import { useAuthStore } from '../../../store/authStore';
 
 const EyeIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -42,20 +44,35 @@ const GithubIcon = () => (
 );
 
 export const CreateAccount = () => {
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({ fullName: '', email: '', password: '', confirmPassword: '' });
+  const [errors, setErrors] = useState({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' });
+
+  // API States
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState('');
+
+  // Hooks
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const validateForm = (): boolean => {
-    const newErrors = { fullName: '', email: '', password: '', confirmPassword: '' };
+    const newErrors = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
-    if (!fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
-    } else if (fullName.trim().length < 3) {
-      newErrors.fullName = 'Full name must be at least 3 characters';
+    if (!firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    } else if (firstName.trim().length < 2) {
+      newErrors.firstName = 'First name must be at least 2 characters';
+    }
+
+    if (!lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    } else if (lastName.trim().length < 2) {
+      newErrors.lastName = 'Last name must be at least 2 characters';
     }
 
     if (!email.trim()) {
@@ -77,13 +94,33 @@ export const CreateAccount = () => {
     }
 
     setErrors(newErrors);
-    return !newErrors.fullName && !newErrors.email && !newErrors.password && !newErrors.confirmPassword;
+    return !newErrors.firstName && !newErrors.lastName && !newErrors.email && !newErrors.password && !newErrors.confirmPassword;
   };
 
-  const handleCreateAccount = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleCreateAccount = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setApiError('');
+
     if (validateForm()) {
-      console.log('Account creation attempt:', { fullName, email, password });
+      setIsLoading(true);
+      try {
+        const response = await registerUser({
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          email: email.trim(),
+          password,
+        });
+
+        // Store tokens and redirect to home
+        login(response.token, response.refreshToken);
+        navigate('/');
+
+      } catch (err: any) {
+        console.error('Registration failed:', err);
+        setApiError(err.message || 'Registration failed. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -106,17 +143,40 @@ export const CreateAccount = () => {
           <p>The infrastructure for your modern commerce journey.</p>
         </div>
 
+        {/* Display Network/API Errors here */}
+        {apiError && (
+          <div style={{ color: '#ef4444', backgroundColor: '#fef2f2', padding: '10px', borderRadius: '6px', marginBottom: '15px', border: '1px solid #f87171', fontSize: '14px', textAlign: 'center' }}>
+            {apiError}
+          </div>
+        )}
+
         <form onSubmit={handleCreateAccount} className="CreateAccountPage__form">
-          <FormControl
-            label="FULL NAME"
-            type="text"
-            placeholder="John Doe"
-            value={fullName}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFullName(e.target.value)}
-            name="fullName"
-            layout="vertical"
-          />
-          {errors.fullName && <span className="error-message">{errors.fullName}</span>}
+          <div className="CreateAccountPage__name-row">
+            <div className="CreateAccountPage__name-field">
+              <FormControl
+                label="FIRST NAME"
+                type="text"
+                placeholder="John"
+                value={firstName}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
+                name="firstName"
+                layout="vertical"
+              />
+              {errors.firstName && <span className="error-message">{errors.firstName}</span>}
+            </div>
+            <div className="CreateAccountPage__name-field">
+              <FormControl
+                label="LAST NAME"
+                type="text"
+                placeholder="Doe"
+                value={lastName}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+                name="lastName"
+                layout="vertical"
+              />
+              {errors.lastName && <span className="error-message">{errors.lastName}</span>}
+            </div>
+          </div>
 
           <FormControl
             label="EMAIL ADDRESS"
@@ -173,11 +233,12 @@ export const CreateAccount = () => {
           {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
 
           <Basebutton
-            backgroundColor="#4F46E5"
+            backgroundColor={isLoading ? "#9ca3af" : "#4F46E5"}
             color="white"
             type="submit"
+            disabled={isLoading}
           >
-            Create Account
+            {isLoading ? 'Creating Account...' : 'Create Account'}
           </Basebutton>
         </form>
 
