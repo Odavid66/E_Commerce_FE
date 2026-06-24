@@ -1,4 +1,4 @@
-import { fetchClient } from "./fetchClient"
+import { fetchClient } from "../utils/fetchClient"
 
 
 export async function DeleteCart(): Promise<void> {

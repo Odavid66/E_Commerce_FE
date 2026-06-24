@@ -9,8 +9,9 @@
   box-sizing: border-box;
   font-family: system-ui, -apple-system, sans-serif;
   flex-shrink: 0;
+  overflow-y: auto;
 }
-
+ 
 .sidenav__header {
   margin-bottom: 40px;
 }

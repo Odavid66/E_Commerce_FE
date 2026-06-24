@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { type OrderCardItem } from '../../../Components/OrderCard/Ordercard'
 import { useQuery } from '@tanstack/react-query'
-import { GetAllUserOrders } from '../../../utils/GetAllUserOrder'
+import { GetAllUserOrders } from '../../../services/GetAllUserOrder'
 import { AdminTable } from '../../../Components/AdminTable/AdminTable'
 import './Orders.css'
 

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { CartItemCard } from '../../../Components/CartItemCard/card'
 import { Basebutton } from '../../../Components/button/button'
-import { GetUserCart, type CartItem } from '../../../utils/GetUserCart'
-import { DeleteCart } from '../../../utils/DeleteCart'
-import { Checkout } from '../../../utils/Checkout'
+import { GetUserCart, type CartItem } from '../../../services/GetUserCart'
+import { DeleteCart } from '../../../services/DeleteCart'
+import { Checkout } from '../../../services/Checkout'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import './Cart.css'
 

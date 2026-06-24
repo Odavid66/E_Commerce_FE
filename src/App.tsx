@@ -16,6 +16,7 @@ import { EditProduct } from './Pages/Admin/Product/EditProduct/EditProduct'
 import { Order } from './Pages/Customer/Order/Order'
 import { Overview } from './Pages/Admin/Overview/Overview'
 import { Orders } from './Pages/Admin/Orders/Orders'
+import { Generalsettings } from './Pages/Admin/settings/generalsettings'
 
 const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/admin/customers" element={<Customers />} />
         <Route path="/admin/products" element={<ProductInventory />} />
         <Route path="/admin/orders" element={<Orders />} />
+        <Route path="/admin/settings" element={<Generalsettings />} />
         <Route path="/admin/products/create" element={<CreateProduct />} />
         <Route path="/admin/products/edit/:id" element={<EditProduct />} />
         </Route>
