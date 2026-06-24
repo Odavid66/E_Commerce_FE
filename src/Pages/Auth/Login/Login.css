@@ -1,0 +1,188 @@
+/* Login Page Styling */
+
+.LoginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F4F7FE; /* Very light gray/blue from mockup */
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Login Container */
+.LoginPage__container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 3rem 2.5rem;
+  max-width: 440px;
+  width: 100%;
+}
+
+/* Header Section */
+.LoginPage__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.LoginPage__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: #EEF2FF;
+  color: #4F46E5;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.LoginPage__header h1 {
+  font-size: 1.75rem;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.LoginPage__header p {
+  color: #4B5563;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Form Section */
+.LoginPage__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+/* Error Messages */
+.error-message {
+  color: #EF4444;
+  font-size: 0.8rem;
+  margin-top: -1.2rem;
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 500;
+}
+
+/* Forgot Password Link */
+.LoginPage__forgotPassword {
+  color: #4F46E5;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.LoginPage__forgotPassword:hover {
+  text-decoration: underline;
+}
+
+/* Checkbox */
+.LoginPage__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.LoginPage__checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #D1D5DB;
+  cursor: pointer;
+}
+
+.LoginPage__checkbox label {
+  font-size: 0.875rem;
+  color: #4B5563;
+  cursor: pointer;
+}
+
+/* Divider */
+.LoginPage__divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 2rem 0;
+  color: #9CA3AF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.LoginPage__divider::before,
+.LoginPage__divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.LoginPage__divider::before {
+  margin-right: 1rem;
+}
+
+.LoginPage__divider::after {
+  margin-left: 1rem;
+}
+
+/* Social Buttons */
+.LoginPage__social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.SocialButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: white;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.SocialButton:hover {
+  background-color: #F9FAFB;
+}
+
+/* Footer Section */
+.LoginPage__footer {
+  text-align: center;
+}
+
+.LoginPage__footer p {
+  margin: 0;
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+
+.LoginPage__link {
+  color: #4F46E5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.LoginPage__link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 425px) {
+  .LoginPage__container {
+    padding: 2rem 1.5rem;
+  }
+}

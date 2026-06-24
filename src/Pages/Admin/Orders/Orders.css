@@ -1,0 +1,134 @@
+.order-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Header */
+.order-page__header {
+  margin-bottom: 20px;
+}
+
+.order-page__header h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.order-page__header p {
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Filters */
+.order-page__filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.order-page__filter-btn {
+  padding: 8px 14px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #475569;
+  transition: 0.2s ease;
+}
+
+.order-page__filter-btn:hover {
+  background: #f1f5f9;
+}
+
+.order-page__filter-btn--active {
+  background: #6366f1;
+  color: white;
+  border-color: #6366f1;
+}
+
+/* Table container */
+.order-page__list {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Table */
+.order-card {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header row */
+.order-card thead {
+  background: #f8fafc;
+}
+
+.order-card th {
+  text-align: left;
+  padding: 14px;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Rows */
+.order-card__row {
+  border-top: 1px solid #f1f5f9;
+}
+
+.order-card td {
+  padding: 16px 14px;
+  font-size: 14px;
+}
+
+/* First column (Order ID style) */
+.order-card td:first-child {
+  color: #4f46e5;
+  font-weight: 500;
+}
+
+/* Status badges */
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Payment status */
+.badge--paid {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge--pending {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+/* Order status */
+.badge--delivered {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.badge--processing {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.badge--cancelled {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+/* Empty state */
+.order-page__empty {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+}

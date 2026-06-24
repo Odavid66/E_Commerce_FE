@@ -1,0 +1,114 @@
+/* FormControl Container */
+.FormControl,
+.FormControl--inline {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Label Row */
+.FormControl__labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Label styling */
+.FormControl__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4B5563; /* Tailwind gray-600 */
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+/* Overriding uppercase if it's explicitly not wanted */
+.FormControl__label.normal-case {
+  text-transform: none;
+}
+
+/* Label Right (Forgot Password) */
+.FormControl__labelRight {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Red asterisk for required fields */
+.FormControl__required {
+  color: #EF4444; /* Tailwind red-500 */
+  margin-left: 0.25rem;
+}
+
+/* Input Container */
+.FormControl__inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Icon styling */
+.FormControl__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF; /* Tailwind gray-400 */
+  width: 2.75rem;
+  height: 100%;
+}
+
+.FormControl__icon--left {
+  left: 0;
+}
+
+.FormControl__icon--right {
+  right: 0;
+  cursor: pointer;
+}
+
+/* Input base styling */
+.FormControl__input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #D1D5DB; /* Tailwind gray-300 */
+  border-radius: 0.5rem; /* 8px */
+  background-color: #FFFFFF;
+  color: #111827; /* Tailwind gray-900 */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Adjust padding if icons are present */
+.FormControl__input.has-left-icon {
+  padding-left: 2.75rem;
+}
+
+.FormControl__input.has-right-icon {
+  padding-right: 2.75rem;
+}
+
+/* Input focus state */
+.FormControl__input:focus {
+  outline: none;
+  border-color: #4F46E5; /* Tailwind indigo-600 */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Placeholder text styling */
+.FormControl__input::placeholder {
+  color: #9CA3AF; /* Tailwind gray-400 */
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 425px) {
+  .FormControl,
+  .FormControl--inline {
+    margin-bottom: 1.25rem;
+  }
+}

@@ -1,0 +1,113 @@
+/* ── Reviews ──────────────────────────────────────── */
+.reviews {
+  padding: 48px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ── Header ───────────────────────────────────────── */
+.reviews__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.reviews__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.reviews__write {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6366f1;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.reviews__write:hover {
+  opacity: 0.8;
+}
+
+/* ── Grid ─────────────────────────────────────────── */
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── Card ─────────────────────────────────────────── */
+.review__card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Top ──────────────────────────────────────────── */
+.review__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.review__name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.review__verified {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* ── Stars ────────────────────────────────────────── */
+.review__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review__star {
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
+.review__star--filled {
+  color: #f59e0b;
+}
+
+/* ── Comment ──────────────────────────────────────── */
+.review__comment {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Mobile ───────────────────────────────────────── */
+@media screen and (max-width: 768px) {
+  .reviews__grid {
+    grid-template-columns: 1fr;
+  }
+}
