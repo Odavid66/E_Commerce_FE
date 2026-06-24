@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import OrderCard, { type OrderCardItem } from '../../../Components/OrderCard/Ordercard'
 import { useQuery } from '@tanstack/react-query'
 import './Order.css'
-import { GetUserOrders } from '../../../utils/GetUserOrder'
+import { GetUserOrders } from '../../../services/GetUserOrder'
 
 type OrderStatusFilter = 'all' | 'pending' | 'paid'
 

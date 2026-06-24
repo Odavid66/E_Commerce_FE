@@ -1,4 +1,4 @@
-import { fetchClient } from "./fetchClient";
+import { fetchClient } from "../utils/fetchClient";
 import { type OrderData } from "../Pages/Admin/Orders/Orders";
 
 export async function GetAllUserOrders(): Promise<OrderData[]> {

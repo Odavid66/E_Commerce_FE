@@ -1,4 +1,4 @@
-import { fetchClient } from "./fetchClient";
+import { fetchClient } from "../utils/fetchClient";
 import { type OrderData } from "../Pages/Customer/Order/Order";
 
 
