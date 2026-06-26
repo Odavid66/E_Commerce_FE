@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { CartItemCard } from '../../../Components/CartItemCard/card'
-import { Basebutton } from '../../../Components/button/button'
+import { Basebutton } from '../../../Components/Button/button'
 import { GetUserCart, type CartItem } from '../../../services/GetUserCart'
 import { DeleteCart } from '../../../services/DeleteCart'
 import { Checkout } from '../../../services/Checkout'
@@ -11,7 +11,7 @@ export function Cart() {
   const navigate = useNavigate()
 
 
-const { data, isLoading, error } = useQuery<CartItem[], Error>({
+  const { data, isLoading, error } = useQuery<CartItem[], Error>({
     queryKey: ['userCart'],
     queryFn: GetUserCart,
   })
@@ -32,7 +32,7 @@ const { data, isLoading, error } = useQuery<CartItem[], Error>({
     return <div className="cart-page__state cart-page__state--error">{error.message}</div>
   }
   const cartItems = data || [];
-  
+
   // Ensure numeric arithmetic even if API returns strings or missing values
   const subtotal = cartItems.reduce((total, item) => {
     const price = Number(item.price) || 0
@@ -49,20 +49,20 @@ const { data, isLoading, error } = useQuery<CartItem[], Error>({
   }
 
   const handleClearCart = async () => {
-      clearCartMutation.mutate()
+    clearCartMutation.mutate()
   }
 
   const handleProceedToCheckout = async () => {
     try {
-    await Checkout()
+      await Checkout()
 
-    navigate('/orders')
+      navigate('/orders')
 
-  } catch (error: any) {
-    
-    console.error(error.message)
-    alert('Checkout failed: ' + error.message)
-  }
+    } catch (error: any) {
+
+      console.error(error.message)
+      alert('Checkout failed: ' + error.message)
+    }
   }
 
   return (
@@ -89,11 +89,11 @@ const { data, isLoading, error } = useQuery<CartItem[], Error>({
                 productDescription={item.productDescription}
                 price={item.price}
                 quantity={item.quantity}
-                onRemove={() => {}}
+                onRemove={() => { }}
               />
             ))}
             <button type="button" className="cart__clear-button" onClick={handleClearCart}>
-                Clear Cart
+              Clear Cart
             </button>
           </div>
 

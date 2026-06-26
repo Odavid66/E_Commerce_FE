@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminTable } from '../../../../Components/AdminTable/AdminTable';
-import { Basebutton } from '../../../../Components/button/button';
+import { Basebutton } from '../../../../Components/Button/button';
 import './ProductInventory.css';
 import { GetProducts } from '../../../../services/productservice';
 import type { Product } from '../../../../Components/ProductCard/ProductCardComponent';
@@ -23,13 +23,13 @@ export const ProductInventory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchAllProductData = async() => {
+  const fetchAllProductData = async () => {
     try {
       setLoading(true);
       const Productdata = await GetProducts();
       console.log("Products:", Productdata);
       setProducts(Productdata);
-    } catch (err: any){
+    } catch (err: any) {
       setError(err.message || 'Failed to load Inventory');
     } finally {
       setLoading(false);
@@ -45,51 +45,51 @@ export const ProductInventory = () => {
     p.categoryName?.toLowerCase().includes(search.toLowerCase())
   );
 
-  if(loading)
+  if (loading)
     return <p className="loading">Loading Products...</p>;
-  if(error)
+  if (error)
     return <p className="error-message">{error}</p>;
-  
+
 
   return (
-      <div className="inventory">
+    <div className="inventory">
 
-        {/* Header */}
-        <div className="inventory__header">
-          <h1 className="inventory__title">Inventory</h1>
-          <div className="inventory__header-actions">
-            <input
-              type="text"
-              className="inventory__search"
-              placeholder="Search product or categories..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <Basebutton
-              backgroundColor="#6366f1"
-              color="#ffffff"
-              width="auto"
-              onClick={() => navigate('/admin/products/create')}
-            >
-              + Add Product
-            </Basebutton>
-          </div>
+      {/* Header */}
+      <div className="inventory__header">
+        <h1 className="inventory__title">Inventory</h1>
+        <div className="inventory__header-actions">
+          <input
+            type="text"
+            className="inventory__search"
+            placeholder="Search product or categories..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Basebutton
+            backgroundColor="#6366f1"
+            color="#ffffff"
+            width="auto"
+            onClick={() => navigate('/admin/products/create')}
+          >
+            + Add Product
+          </Basebutton>
         </div>
-
-        {/* Table */}
-        <AdminTable
-          columns={columns}
-          data={filtered}
-          nav="admin"
-          onEdit={(row) => navigate(`/admin/products/edit/${row.id}`)}
-          onDelete={(row) => console.log("Delete:", row.name)}
-        />
-
-        {/* Footer */}
-        <div className="inventory__footer">
-          <p>Showing {filtered.length} of {products.length} products</p>
-        </div>
-
       </div>
+
+      {/* Table */}
+      <AdminTable
+        columns={columns}
+        data={filtered}
+        nav="admin"
+        onEdit={(row) => navigate(`/admin/products/edit/${row.id}`)}
+        onDelete={(row) => console.log("Delete:", row.name)}
+      />
+
+      {/* Footer */}
+      <div className="inventory__footer">
+        <p>Showing {filtered.length} of {products.length} products</p>
+      </div>
+
+    </div>
   );
 };

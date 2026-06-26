@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdminForm } from '../../../../Components/AdminForm/AdminForm';
-import { Basebutton } from '../../../../Components/button/button';
+import { Basebutton } from '../../../../Components/Button/button';
 import './EditProduct.css';
 
 // Dummy data — later this will come from an API using the id

@@ -2,7 +2,7 @@ import './ProductInfo.css';
 import { ProductImageGallery } from '../ProductImageGallery/ProductImageGallery';
 import { ProductReviews } from '../ProductReviews/ProductReview';
 import { ProductGrid } from '../ProductGrid/ProductGrid';
-import { Basebutton } from '../button/button';
+import { Basebutton } from '../Button/button';
 import type { Product } from '../ProductCard/ProductCardComponent';
 import { fetchClient } from '../../utils/fetchClient';
 import { useState } from 'react';
@@ -30,23 +30,23 @@ export const ProductInfo = ({
 }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [error, Seterror] = useState('');
-    const handleAddToCart = async (product: Product) => {
-        try {
-            const response = await fetchClient('/api/Cart/AddToCart', {
-                method: 'POST',
-                body: JSON.stringify({ productId: product.id, productName: product.name}),
-            });
-            
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-            }
-            
-            Seterror(response)
-            console.log("Product added to cart:", response);
-        } catch (error) {
-            console.error("Error adding product to cart:", error);
-        }
-    };
+  const handleAddToCart = async (product: Product) => {
+    try {
+      const response = await fetchClient('/api/Cart/AddToCart', {
+        method: 'POST',
+        body: JSON.stringify({ productId: product.id, productName: product.name }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      Seterror(response)
+      console.log("Product added to cart:", response);
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
 
 
   const increment = () => setQuantity(q => q + 1);
@@ -140,7 +140,7 @@ export const ProductInfo = ({
         <h2 className="product-info__related-title">You May Also Like</h2>
         <ProductGrid
           products={relatedProducts}
-          onViewDetails={() => {}}
+          onViewDetails={() => { }}
         />
       </div>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminForm } from '../../../../Components/AdminForm/AdminForm';
-import { Basebutton } from '../../../../Components/button/button';
+import { Basebutton } from '../../../../Components/Button/button';
 import './CreateProduct.css';
 import { CreateProduct as CreateProductService } from '../../../../services/productservice';
 import { GetCategories, CreateCategory } from '../../../../services/categoryservice';
@@ -34,7 +34,7 @@ export const CreateProduct = () => {
   }, []);
 
   const handleAddcategory = async () => {
-    if(!newCategory.trim()) return;
+    if (!newCategory.trim()) return;
     try {
       const data = await CreateCategory({ name: newCategory });
       console.log('CategoryCreated:', data)
@@ -42,12 +42,12 @@ export const CreateProduct = () => {
       setSelectedCategory(data?.id || data);
       setNewCategory('');
       setShowNewCategory(false);
-    }catch (err: any) {
+    } catch (err: any) {
       setError(err.message || "Failed to create category");
     }
   }
 
-  const handleSave = async() => {
+  const handleSave = async () => {
     try {
       setSaving(true);
       await CreateProductService({
@@ -61,7 +61,7 @@ export const CreateProduct = () => {
       navigate('/admin/products');
     } catch (err: any) {
       setError(err.message || 'Failed to create products');
-    }finally {
+    } finally {
       setSaving(false);
     }
   };
@@ -95,7 +95,7 @@ export const CreateProduct = () => {
             onClick={handleSave}
             disabled={saving}
           >
-            {saving ? 'Saving...': 'Save Changes'}
+            {saving ? 'Saving...' : 'Save Changes'}
           </Basebutton>
         </div>
       </div>
@@ -155,7 +155,7 @@ export const CreateProduct = () => {
             <h2 className="create-product__section-title">
               💰 Status & Pricing
             </h2>
-          
+
             <div className="create-product__row">
               <AdminForm
                 label="Price ($)"
@@ -191,10 +191,10 @@ export const CreateProduct = () => {
 
             {/* Add new category */}
             {!showNewCategory ? (
-              <button 
+              <button
                 className="create-product__add-category"
                 onClick={() => setShowNewCategory(true)}>
-                  + Add New Category
+                + Add New Category
               </button>
             ) : (
               <div className="create-product__new-category">
@@ -226,7 +226,7 @@ export const CreateProduct = () => {
                 </div>
               </div>
             )}
-             
+
           </div>
 
         </div>
